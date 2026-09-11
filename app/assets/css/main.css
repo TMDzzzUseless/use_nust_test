@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    /*文字間距*/
+    --page_pading:2rem 4rem;
+    --main_pading:0.25rem 0.25rem;
+    /*方塊位址*/
+    --box_local:center;
+    /*方塊圓角*/
+    --radius:0.25rem;
+    --wideth_block:80%;
+    /*顏色*/
+    --main_color: rgb(120,50,120);
+    --main_bg:rgb(0,0,0);
+    /*文字相關*/
+    --main_color_text:rgb(255,255,255);
+    --main_text_size:clamp(1rem, 2vw + 0.04rem, 3rem);
+    --main_text_type:bold;
+    --main_text_local:center;
+    --key_mouse:pointer;
+}
+/*以下是style*/
+.page_bg{
+    padding: var(--page_pading);
+    background-color: var(--main_bg);
+    /*自動調整最小解析度*/
+    min-height: 100vh;
+    /* 加上這兩行讓子元素完全置中 */
+    display: flex;
+    flex-direction: column; /* 讓子元素垂直由上往下排列 */
+    align-items: var(--box_local);    /* 維持水平置中 */
+    justify-content: flex-start; /* 從最上方開始對齊 */
+}
+.text_box{
+    padding: var(--main_pading);
+    border-radius: var(--radius);
+    width: var(--wideth_block);
+   
+    background-color: var(--main_color);
+    
+    font-size: var(--main_text_size);
+    font-weight: var(--main_text_type);
+    text-align: var(--main_text_local);
+    
+    cursor: var(--key_mouse);
+}
