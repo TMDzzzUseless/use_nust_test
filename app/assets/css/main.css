@@ -3,46 +3,73 @@
 @tailwind utilities;
 
 :root{
-    /*文字間距*/
-    --page_pading:2rem 4rem;
-    --main_pading:0.25rem 0.25rem;
-    /*方塊位址*/
-    --box_local:center;
-    /*方塊圓角*/
-    --radius:0.25rem;
-    --wideth_block:80%;
-    /*顏色*/
+    --page_pading: 2rem 4rem;
+    --box_local: center;
+    --wideth_block: 100%;
     --main_color: rgb(120,50,120);
-    --main_bg:rgb(0,0,0);
-    /*文字相關*/
-    --main_color_text:rgb(255,255,255);
-    --main_text_size:clamp(1rem, 2vw + 0.04rem, 3rem);
-    --main_text_type:bold;
-    --main_text_local:center;
-    --key_mouse:pointer;
+    --main_bg: rgb(0,0,0);
+    --botton_active_color: rgb(255,255,255);
+    --main_color_text: rgb(255,255,255);
+    --botton_text_active_color: rgb(0,0,0);
+    --botton_text_color: rgb(100,100,100);
 }
-/*以下是style*/
+
+.text_common{
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
 .page_bg{
     padding: var(--page_pading);
     background-color: var(--main_bg);
-    /*自動調整最小解析度*/
     min-height: 100vh;
-    /* 加上這兩行讓子元素完全置中 */
     display: flex;
-    flex-direction: column; /* 讓子元素垂直由上往下排列 */
-    align-items: var(--box_local);    /* 維持水平置中 */
-    justify-content: flex-start; /* 從最上方開始對齊 */
-}
-.text_box{
-    padding: var(--main_pading);
-    border-radius: var(--radius);
+    flex-direction: column; 
+    align-items: var(--box_local);    
+    justify-content: flex-start; 
     width: var(--wideth_block);
-   
+    margin: 0 auto;
+    gap: 1.5rem; /* 上下行之間的固定間隔 */
+}
+
+.text_box{
     background-color: var(--main_color);
-    
-    font-size: var(--main_text_size);
-    font-weight: var(--main_text_type);
-    text-align: var(--main_text_local);
-    
-    cursor: var(--key_mouse);
+    color: var(--main_color_text);
+    border-radius: var(--dynamic-radius, 1rem);
+    padding: var(--dynamic-padding, 0.75rem 1rem);
+    width: 80%;
+}
+
+/* 🎯 關鍵：讓按鈕群組強制水平並排 */
+.select_common{
+    display: flex;                      /* 確保水平排列 */
+    flex-direction: row;                /* 強制橫向 */
+    gap: 1rem;                          /* 按鈕與按鈕之間的間距 */
+    width: 80%;                         /* 與上方標題同寬 */
+    box-sizing: border-box;
+}
+
+/* 🎯 按鈕樣式：套用從 TS 傳入的動態變數，達成圓角與大小連動 */
+.select, .no_select {
+    flex: 1;                            /* 三個按鈕均分寬度 */
+    padding: var(--dynamic-padding, 0.75rem 0.5rem);          /* 跟隨 TS 變數連動 */
+    border-radius: var(--dynamic-radius, 1rem);             /* 跟隨 TS 變數連動 */
+    border: none;
+    font-weight: bold;
+    font-size: inherit;                 /* 繼承容器的動態字體大小 */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
+}
+
+.select {
+    background-color: var(--botton_active_color);
+    color: var(--botton_text_active_color);
+}
+
+.no_select {
+    background-color: var(--main_color);
+    color: var(--botton_text_color);
 }
