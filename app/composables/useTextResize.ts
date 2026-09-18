@@ -11,8 +11,10 @@ export function useTextResize(elementId: string, maxSize: number = 5, scaleFacto
         textElement.style.fontSize = `${fontSize}rem`;
 
         // 2. 🎯 讓圓角與間距跟著字體大小動態連動（以 fontSize 比例計算）
-        textElement.style.setProperty('--dynamic-radius', `${fontSize * 0.3}rem`);
-        textElement.style.setProperty('--dynamic-padding', `${fontSize * 0.2}rem ${fontSize * 0.4}rem`);
+        textElement.style.setProperty('--dynamic_radius', `${fontSize* 0.5}rem`);
+        textElement.style.setProperty('--dynamic_padding', `${fontSize * 0.25}rem ${fontSize * 0.25}rem`);
+        textElement.style.setProperty('--dynamic_gap', `${fontSize * 0.25}rem`);
+        textElement.style.setProperty('--dynamic_border', `${fontSize * 0.1}rem`);
     };
 
     onMounted(() => {

@@ -4,19 +4,22 @@
 
 :root{
     --page_pading: 2rem 4rem;
-    --box_local: center;
-    --wideth_block: 100%;
-    --main_color: rgb(120,50,120);
-    --main_bg: rgb(0,0,0);
-    --botton_active_color: rgb(255,255,255);
-    --main_color_text: rgb(255,255,255);
-    --botton_text_active_color: rgb(0,0,0);
-    --botton_text_color: rgb(100,100,100);
+    --local: center;
+    --wideth_page: 100%;
+    --wideth_block: 80%;
+    --main_bg: rgb(0, 0, 0);             
+    --main_color: rgb(250, 199, 28);           
+    --botton_active_color: rgb(255, 255, 255);
+    --main_color_text: rgb(0, 0, 0);   
+    --botton_text_active_color: rgb(0, 0, 0); 
+    --botton_text_color: rgb(0, 0, 0);
+    --border_color:rgba(90, 54, 24, 0.6);   
 }
+
 
 .text_common{
     font-weight: bold;
-    text-align: center;
+    text-align: var(--local);
     white-space: nowrap;
     box-sizing: border-box;
 }
@@ -27,26 +30,30 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column; 
-    align-items: var(--box_local);    
+    align-items: var(--local);    
     justify-content: flex-start; 
-    width: var(--wideth_block);
+    width: var(--wideth_page);
     margin: 0 auto;
-    gap: 1.5rem; /* 上下行之間的固定間隔 */
+    gap: var(--dynamic_gap, 1rem); /* 上下行之間的固定間隔 */
 }
 
 .text_box{
     background-color: var(--main_color);
     color: var(--main_color_text);
-    border-radius: var(--dynamic-radius, 1rem);
-    padding: var(--dynamic-padding, 0.75rem 1rem);
-    width: 80%;
+    border: 10px solid rgba(139, 69, 19, 0.6);   /* 1px 實線、半透明的紅棕木色 */
+    border-radius: var(--dynamic_radius, 1rem);
+    padding: var(--dynamic_padding, 0.75rem 1rem);
+    width: var(--wideth_block);
+    border-width: var(--dynamic_border, 0.5rem);
+    border-style: solid;
+    border-color: var(--border_color);   /* 1px 實線、半透明的紅棕木色 */
 }
 
 /* 🎯 關鍵：讓按鈕群組強制水平並排 */
 .select_common{
     display: flex;                      /* 確保水平排列 */
     flex-direction: row;                /* 強制橫向 */
-    gap: 1rem;                          /* 按鈕與按鈕之間的間距 */
+    gap: var(--dynamic_gap, 1rem);      /* 按鈕與按鈕之間的間距 */
     width: 80%;                         /* 與上方標題同寬 */
     box-sizing: border-box;
 }
@@ -54,14 +61,16 @@
 /* 🎯 按鈕樣式：套用從 TS 傳入的動態變數，達成圓角與大小連動 */
 .select, .no_select {
     flex: 1;                            /* 三個按鈕均分寬度 */
-    padding: var(--dynamic-padding, 0.75rem 0.5rem);          /* 跟隨 TS 變數連動 */
-    border-radius: var(--dynamic-radius, 1rem);             /* 跟隨 TS 變數連動 */
-    border: none;
+    padding: var(--dynamic_padding, 0.25rem 0.25rem);          /* 跟隨 TS 變數連動 */
+    border-radius: var(--dynamic_radius, 1rem);             /* 跟隨 TS 變數連動 */
     font-weight: bold;
     font-size: inherit;                 /* 繼承容器的動態字體大小 */
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
     white-space: nowrap;
+    border-width: var(--dynamic_border, 0.5rem);
+    border-style: solid;
+    border-color:var(--border_color);   
 }
 
 .select {
